@@ -34,10 +34,18 @@ if __name__ == '__main__':
 	     else:
 	         print "q1"
 	         try:
+		     # Decode station array parameter
                      gzipstring = sys.argv[2].decode('base64','strict')
-                     station_list = gzip.GzipFile(fileobj=StringIO(gzipstring)).read()
-		     print station_list.strip()
+		     # Decompress decoded station array parameter
+                     station_list = gzip.GzipFile(fileobj=StringIO(gzipstring)).read().strip()
+		     # Create list from station array parameter
+		     station_list = station_list.split(',')
+		     # Convertstation ids from string to integer
+		     station_list = map(int, station_list)
+		     # Deduplicate possible repeated values within the station array
+		     station_list = sorted(set(station_list))
                  except Exception, e:
                      print "ERROR: An error occurred while trying to decode station array parameter"
+		     print e
     except Exception, e:
          print "ERROR"
