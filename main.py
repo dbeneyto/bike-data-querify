@@ -42,6 +42,8 @@ if __name__ == '__main__':
                      station_list = gzip.GzipFile(fileobj=StringIO(gzipstring)).read().strip()
 		     # Create list from station array parameter
 		     station_list = station_list.split(',')
+		     # Converting string array to int array
+		     station_list = map(int,station_list)
 		     # Deduplicate possible repeated values within the station array
 		     station_list = sorted(set(station_list))
                  except Exception, e:
@@ -78,7 +80,7 @@ if __name__ == '__main__':
 			 print e
 		     for station in station_list:
 			 station_row = []
-			 station_row.append("id="+station)
+			 station_row.append("id="+str(station))
    		         cursor = collection.find( { "$and": [{"s" : station},{ "t": {"$gte": t1 ,"$lte": t2} }] })
                          for row in cursor:
                                 station_row.append(json.dumps(row['f']))
