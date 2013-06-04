@@ -11,7 +11,7 @@ Call example:
 python main.py q1 [Hashed array of stations] [timestamp t1 YYYYMMDDHHMM] [timestamp t2 YYYYMMDDHHMM] [bike system]
 
 To hash array of stations:
-# echo '1,23,27,113,214,335' | gzip -cf| base64
+echo '1,23,27,113,214,335' | gzip -cf| base64
 > H4sIAIKUrVEAAzPUMTLWMTLXMTQEUoYmOsbGplwA/BpnLBQAAAA=
 
 python main.py q1 H4sIAIKUrVEAAzPUMTLWMTLXMTQEUoYmOsbGplwA/BpnLBQAAAA= 201306010000 2013060300 bicing
